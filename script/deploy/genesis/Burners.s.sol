@@ -3,15 +3,15 @@ pragma solidity 0.8.25;
 
 import {Script, console2} from "forge-std/Script.sol";
 
-import {BurnerRouterFactory} from "../../src/contracts/router/BurnerRouterFactory.sol";
-import {BurnerRouter} from "../../src/contracts/router/BurnerRouter.sol";
+import {BurnerRouterFactory} from "../../../src/contracts/router/BurnerRouterFactory.sol";
+import {BurnerRouter} from "../../../src/contracts/router/BurnerRouter.sol";
 
-import {wstETH_Burner} from "../../src/contracts/burners/wstETH_Burner.sol";
-import {rETH_Burner} from "../../src/contracts/burners/rETH_Burner.sol";
-import {mETH_Burner} from "../../src/contracts/burners/mETH_Burner.sol";
-import {swETH_Burner} from "../../src/contracts/burners/swETH_Burner.sol";
-import {sfrxETH_Burner} from "../../src/contracts/burners/sfrxETH_Burner.sol";
-import {ETHx_Burner} from "../../src/contracts/burners/ETHx_Burner.sol";
+import {wstETH_Burner} from "../../../src/contracts/burners/wstETH_Burner.sol";
+import {rETH_Burner} from "../../../src/contracts/burners/rETH_Burner.sol";
+import {mETH_Burner} from "../../../src/contracts/burners/mETH_Burner.sol";
+import {swETH_Burner} from "../../../src/contracts/burners/swETH_Burner.sol";
+import {sfrxETH_Burner} from "../../../src/contracts/burners/sfrxETH_Burner.sol";
+import {ETHx_Burner} from "../../../src/contracts/burners/ETHx_Burner.sol";
 
 contract BurnersScript is Script {
     function run() public {

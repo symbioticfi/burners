@@ -31,10 +31,10 @@ An asset transfered to the [Burner](../src/contracts/burners/wstETH_Burner.sol) 
 
 #### Deploy entity
 
-Deployment script: [click](../script/deploy/wstETH_Burner.s.sol)
+Deployment script: [click](../script/deploy/genesis/wstETH_Burner.s.sol)
 
 ```shell
-forge script script/deploy/wstETH_Burner.s.sol:wstETH_BurnerScript --broadcast --rpc-url=$ETH_RPC_URL
+forge script script/deploy/genesis/wstETH_Burner.s.sol:wstETH_BurnerScript --broadcast --rpc-url=$ETH_RPC_URL
 ```
 
 ### rETH Burner
@@ -50,10 +50,10 @@ An asset transfered to the [Burner](../src/contracts/burners/rETH_Burner.sol) - 
 
 #### Deploy entity
 
-Deployment script: [click](../script/deploy/rETH_Burner.s.sol)
+Deployment script: [click](../script/deploy/genesis/rETH_Burner.s.sol)
 
 ```shell
-forge script script/deploy/rETH_Burner.s.sol:rETH_BurnerScript --broadcast --rpc-url=$ETH_RPC_URL
+forge script script/deploy/genesis/rETH_Burner.s.sol:rETH_BurnerScript --broadcast --rpc-url=$ETH_RPC_URL
 ```
 
 ### mETH Burner
@@ -73,10 +73,10 @@ An asset transfered to the [Burner](../src/contracts/burners/mETH_Burner.sol) - 
 
 #### Deploy entity
 
-Deployment script: [click](../script/deploy/mETH_Burner.s.sol)
+Deployment script: [click](../script/deploy/genesis/mETH_Burner.s.sol)
 
 ```shell
-forge script script/deploy/mETH_Burner.s.sol:mETH_BurnerScript --broadcast --rpc-url=$ETH_RPC_URL
+forge script script/deploy/genesis/mETH_Burner.s.sol:mETH_BurnerScript --broadcast --rpc-url=$ETH_RPC_URL
 ```
 
 ### swETH Burner
@@ -97,10 +97,10 @@ An asset transfered to the [Burner](../src/contracts/burners/swETH_Burner.sol) -
 
 #### Deploy entity
 
-Deployment script: [click](../script/deploy/swETH_Burner.s.sol)
+Deployment script: [click](../script/deploy/genesis/swETH_Burner.s.sol)
 
 ```shell
-forge script script/deploy/swETH_Burner.s.sol:swETH_BurnerScript --broadcast --rpc-url=$ETH_RPC_URL
+forge script script/deploy/genesis/swETH_Burner.s.sol:swETH_BurnerScript --broadcast --rpc-url=$ETH_RPC_URL
 ```
 
 ### sfrxETH Burner
@@ -120,10 +120,10 @@ An asset transfered to the [Burner](../src/contracts/burners/sfrxETH_Burner.sol)
 
 #### Deploy entity
 
-Deployment script: [click](../script/deploy/sfrxETH_Burner.s.sol)
+Deployment script: [click](../script/deploy/genesis/sfrxETH_Burner.s.sol)
 
 ```shell
-forge script script/deploy/sfrxETH_Burner.s.sol:sfrxETH_BurnerScript --broadcast --rpc-url=$ETH_RPC_URL
+forge script script/deploy/genesis/sfrxETH_Burner.s.sol:sfrxETH_BurnerScript --broadcast --rpc-url=$ETH_RPC_URL
 ```
 
 ### ETHx Burner
@@ -144,8 +144,8 @@ An asset transfered to the [Burner](../src/contracts/burners/ETHx_Burner.sol) - 
 
 #### Deploy entity
 
-Deployment script: [click](../script/deploy/ETHx_Burner.s.sol)
+Deployment script: [click](../script/deploy/genesis/ETHx_Burner.s.sol)
 
 ```shell
-forge script script/deploy/ETHx_Burner.s.sol:ETHx_BurnerScript --broadcast --rpc-url=$ETH_RPC_URL
+forge script script/deploy/genesis/ETHx_Burner.s.sol:ETHx_BurnerScript --broadcast --rpc-url=$ETH_RPC_URL
 ```
