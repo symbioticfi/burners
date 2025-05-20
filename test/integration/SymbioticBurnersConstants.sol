@@ -50,6 +50,16 @@ library SymbioticBurnersConstants {
                 swETH_Burner: ISymbioticswETH_Burner(address(0)),
                 wstETH_Burner: ISymbioticwstETH_Burner(0x58D347334A5E6bDE7279696abE59a11873294FA4)
             });
+        } else if (block.chainid == 560_048) {
+            // hoodi
+            return Burners({
+                ETHx_Burner: ISymbioticETHx_Burner(address(0)),
+                mETH_Burner: ISymbioticmETH_Burner(address(0)),
+                rETH_Burner: ISymbioticrETH_Burner(0xC1F81485E05cc91EC1eBF556455de54F58675278),
+                sfrxETH_Burner: ISymbioticsfrxETH_Burner(address(0)),
+                swETH_Burner: ISymbioticswETH_Burner(address(0)),
+                wstETH_Burner: ISymbioticwstETH_Burner(0xd80732420fF1C62A21bA11c83377F7a5d69AEF26)
+            });
         } else {
             revert("SymbioticBurnersConstants.burners(): chainid not supported");
         }
@@ -65,6 +75,9 @@ library SymbioticBurnersConstants {
         } else if (block.chainid == 11_155_111) {
             // sepolia
             return ISymbioticBurnerRouterFactory(0x32e2AfbdAffB1e675898ABA75868d92eE1E68f3b);
+        } else if (block.chainid == 560_048) {
+            // hoodi
+            return ISymbioticBurnerRouterFactory(0xF619c99D166224B4AC008b14Cc67ac72C2E91D8a);
         } else {
             revert("SymbioticBurnersConstants.burnerRouterFactory(): chainid not supported");
         }
