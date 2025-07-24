@@ -2,6 +2,8 @@
 
 This repository contains Symbiotic Default Burners contracts.
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/symbioticfi/burners)
+
 ## Technical Documentation
 
 Technical documentation can be found [here](./specs).
