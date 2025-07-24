@@ -3,7 +3,7 @@ pragma solidity 0.8.25;
 
 import {Script, console2} from "forge-std/Script.sol";
 
-import {ETHx_Burner} from "../../src/contracts/burners/ETHx_Burner.sol";
+import {ETHx_Burner} from "../../../src/contracts/burners/ETHx_Burner.sol";
 
 contract ETHx_BurnerScript is Script {
     function run() public {

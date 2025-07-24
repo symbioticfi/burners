@@ -3,7 +3,7 @@ pragma solidity 0.8.25;
 
 import {Script, console2} from "forge-std/Script.sol";
 
-import {wstETH_Burner} from "../../src/contracts/burners/wstETH_Burner.sol";
+import {wstETH_Burner} from "../../../src/contracts/burners/wstETH_Burner.sol";
 
 contract wstETH_BurnerScript is Script {
     function run() public {

@@ -3,15 +3,15 @@ pragma solidity 0.8.25;
 
 import {Script, console2} from "forge-std/Script.sol";
 
-import {BurnerRouterFactory} from "../../src/contracts/router/BurnerRouterFactory.sol";
-import {BurnerRouter} from "../../src/contracts/router/BurnerRouter.sol";
+import {BurnerRouterFactory} from "../../../src/contracts/router/BurnerRouterFactory.sol";
+import {BurnerRouter} from "../../../src/contracts/router/BurnerRouter.sol";
 
-import {wstETH_Burner} from "../../src/contracts/burners/wstETH_Burner.sol";
-import {rETH_Burner} from "../../src/contracts/burners/rETH_Burner.sol";
-import {mETH_Burner} from "../../src/contracts/burners/mETH_Burner.sol";
-import {swETH_Burner} from "../../src/contracts/burners/swETH_Burner.sol";
-import {sfrxETH_Burner} from "../../src/contracts/burners/sfrxETH_Burner.sol";
-import {ETHx_Burner} from "../../src/contracts/burners/ETHx_Burner.sol";
+import {wstETH_Burner} from "../../../src/contracts/burners/wstETH_Burner.sol";
+import {rETH_Burner} from "../../../src/contracts/burners/rETH_Burner.sol";
+import {mETH_Burner} from "../../../src/contracts/burners/mETH_Burner.sol";
+import {swETH_Burner} from "../../../src/contracts/burners/swETH_Burner.sol";
+import {sfrxETH_Burner} from "../../../src/contracts/burners/sfrxETH_Burner.sol";
+import {ETHx_Burner} from "../../../src/contracts/burners/ETHx_Burner.sol";
 
 contract BurnersScript is Script {
     function run() public {
@@ -23,7 +23,8 @@ contract BurnersScript is Script {
             burnerRouterFactory = address(new BurnerRouterFactory(burnerRouterImplementation));
         }
 
-        bool deploy_wstETH_Burner = block.chainid == 1 || block.chainid == 17_000 || block.chainid == 11_155_111;
+        bool deploy_wstETH_Burner =
+            block.chainid == 1 || block.chainid == 17_000 || block.chainid == 11_155_111 || block.chainid == 560_048;
         address wstETH_BurnerAddress;
         if (deploy_wstETH_Burner) {
             address collateral;
@@ -40,12 +41,16 @@ contract BurnersScript is Script {
                 // sepolia
                 collateral = 0xB82381A3fBD3FaFA77B3a7bE693342618240067b;
                 lidoWithdrawalQueue = 0x1583C7b3f4C3B008720E6BcE5726336b0aB25fdd;
+            } else if (block.chainid == 560_048) {
+                // hoodi
+                collateral = 0x7E99eE3C66636DE415D2d7C880938F2f40f94De4;
+                lidoWithdrawalQueue = 0xfe56573178f1bcdf53F01A6E9977670dcBBD9186;
             }
 
             wstETH_BurnerAddress = address(new wstETH_Burner(collateral, lidoWithdrawalQueue));
         }
 
-        bool deploy_rETH_Burner = block.chainid == 1 || block.chainid == 17_000;
+        bool deploy_rETH_Burner = block.chainid == 1 || block.chainid == 17_000 || block.chainid == 560_048;
         address rETH_BurnerAddress;
         if (deploy_rETH_Burner) {
             address collateral;
@@ -54,6 +59,9 @@ contract BurnersScript is Script {
                 collateral = 0xae78736Cd615f374D3085123A210448E74Fc6393;
             } else if (block.chainid == 17_000) {
                 // holesky
+                collateral = 0x7322c24752f79c05FFD1E2a6FCB97020C1C264F1;
+            } else if (block.chainid == 560_048) {
+                // hoodi
                 collateral = 0x7322c24752f79c05FFD1E2a6FCB97020C1C264F1;
             }
 

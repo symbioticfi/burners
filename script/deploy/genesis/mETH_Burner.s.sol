@@ -3,7 +3,7 @@ pragma solidity 0.8.25;
 
 import {Script, console2} from "forge-std/Script.sol";
 
-import {mETH_Burner} from "../../src/contracts/burners/mETH_Burner.sol";
+import {mETH_Burner} from "../../../src/contracts/burners/mETH_Burner.sol";
 
 contract mETH_BurnerScript is Script {
     function run() public {

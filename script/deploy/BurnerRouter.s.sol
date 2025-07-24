@@ -3,12 +3,12 @@ pragma solidity 0.8.25;
 
 import {Script, console2} from "forge-std/Script.sol";
 
-import {IBurnerRouterFactory} from "../../src/interfaces/router/IBurnerRouterFactory.sol";
+import {SymbioticBurnersConstants} from "../../test/integration/SymbioticBurnersConstants.sol";
+
 import {IBurnerRouter} from "../../src/interfaces/router/IBurnerRouter.sol";
 
 contract BurnerRouterScript is Script {
     function run(
-        address burnerRouterFactory,
         address owner,
         address collateral,
         uint48 delay,
@@ -18,7 +18,7 @@ contract BurnerRouterScript is Script {
     ) public {
         vm.startBroadcast();
 
-        address burnerRouter = IBurnerRouterFactory(burnerRouterFactory).create(
+        address burnerRouter = SymbioticBurnersConstants.burnerRouterFactory().create(
             IBurnerRouter.InitParams({
                 owner: owner,
                 collateral: collateral,
