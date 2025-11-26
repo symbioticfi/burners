@@ -10,18 +10,14 @@ contract sUSDe_Miniburner is OwnableUpgradeable {
 
     address private immutable _USDE;
 
-    constructor(
-        address collateral
-    ) {
+    constructor(address collateral) {
         _disableInitializers();
 
         _COLLATERAL = collateral;
         _USDE = ISUSDe(collateral).asset();
     }
 
-    function initialize(
-        uint256 amount
-    ) external initializer {
+    function initialize(uint256 amount) external initializer {
         __Ownable_init(msg.sender);
 
         ISUSDe(_COLLATERAL).cooldownShares(amount);

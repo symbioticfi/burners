@@ -37,15 +37,11 @@ interface IswETH_Burner is IUintRequests {
      * @return firstRequestId first request ID that was created
      * @return lastRequestId last request ID that was created
      */
-    function triggerWithdrawal(
-        uint256 maxRequests
-    ) external returns (uint256 firstRequestId, uint256 lastRequestId);
+    function triggerWithdrawal(uint256 maxRequests) external returns (uint256 firstRequestId, uint256 lastRequestId);
 
     /**
      * @notice Trigger a claim and a burn of ETH.
      * @param requestId request ID of the withdrawal to process
      */
-    function triggerBurn(
-        uint256 requestId
-    ) external;
+    function triggerBurn(uint256 requestId) external;
 }

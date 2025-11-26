@@ -36,11 +36,7 @@ contract SymbioticBurnersBindings is Test {
         vm.stopPrank();
     }
 
-    function _setGlobalReceiver_SymbioticBurners(
-        address who,
-        address burnerRouter,
-        address receiver
-    ) internal virtual {
+    function _setGlobalReceiver_SymbioticBurners(address who, address burnerRouter, address receiver) internal virtual {
         vm.startPrank(who);
         ISymbioticBurnerRouter(burnerRouter).setGlobalReceiver(receiver);
         vm.stopPrank();
@@ -52,22 +48,19 @@ contract SymbioticBurnersBindings is Test {
         vm.stopPrank();
     }
 
-    function _setNetworkReceiver_SymbioticBurners(
-        address who,
-        address burnerRouter,
-        address network,
-        address receiver
-    ) internal virtual {
+    function _setNetworkReceiver_SymbioticBurners(address who, address burnerRouter, address network, address receiver)
+        internal
+        virtual
+    {
         vm.startPrank(who);
         ISymbioticBurnerRouter(burnerRouter).setNetworkReceiver(network, receiver);
         vm.stopPrank();
     }
 
-    function _acceptNetworkReceiver_SymbioticBurners(
-        address who,
-        address burnerRouter,
-        address network
-    ) internal virtual {
+    function _acceptNetworkReceiver_SymbioticBurners(address who, address burnerRouter, address network)
+        internal
+        virtual
+    {
         vm.startPrank(who);
         ISymbioticBurnerRouter(burnerRouter).acceptNetworkReceiver(network);
         vm.stopPrank();
@@ -108,11 +101,11 @@ contract SymbioticBurnersBindings is Test {
         vm.stopPrank();
     }
 
-    function _triggerWithdrawal_ETHx_SymbioticBurners(
-        address who,
-        address burner,
-        uint256 maxWithdrawalAmount
-    ) internal virtual returns (uint256 requestId) {
+    function _triggerWithdrawal_ETHx_SymbioticBurners(address who, address burner, uint256 maxWithdrawalAmount)
+        internal
+        virtual
+        returns (uint256 requestId)
+    {
         vm.startPrank(who);
         requestId = ISymbioticETHx_Burner(burner).triggerWithdrawal(maxWithdrawalAmount);
         vm.stopPrank();
@@ -124,10 +117,11 @@ contract SymbioticBurnersBindings is Test {
         vm.stopPrank();
     }
 
-    function _triggerWithdrawal_mETH_SymbioticBurners(
-        address who,
-        address burner
-    ) internal virtual returns (uint256 requestId) {
+    function _triggerWithdrawal_mETH_SymbioticBurners(address who, address burner)
+        internal
+        virtual
+        returns (uint256 requestId)
+    {
         vm.startPrank(who);
         requestId = ISymbioticmETH_Burner(burner).triggerWithdrawal();
         vm.stopPrank();
@@ -145,10 +139,11 @@ contract SymbioticBurnersBindings is Test {
         vm.stopPrank();
     }
 
-    function _triggerWithdrawal_sfrxETH_SymbioticBurners(
-        address who,
-        address burner
-    ) internal virtual returns (uint256 requestId) {
+    function _triggerWithdrawal_sfrxETH_SymbioticBurners(address who, address burner)
+        internal
+        virtual
+        returns (uint256 requestId)
+    {
         vm.startPrank(who);
         requestId = ISymbioticsfrxETH_Burner(burner).triggerWithdrawal();
         vm.stopPrank();
@@ -160,10 +155,11 @@ contract SymbioticBurnersBindings is Test {
         vm.stopPrank();
     }
 
-    function _triggerWithdrawal_sUSDe_SymbioticBurners(
-        address who,
-        address burner
-    ) internal virtual returns (address requestId) {
+    function _triggerWithdrawal_sUSDe_SymbioticBurners(address who, address burner)
+        internal
+        virtual
+        returns (address requestId)
+    {
         vm.startPrank(who);
         requestId = ISymbioticsUSDe_Burner(burner).triggerWithdrawal();
         vm.stopPrank();
@@ -193,11 +189,11 @@ contract SymbioticBurnersBindings is Test {
         vm.stopPrank();
     }
 
-    function _triggerWithdrawal_swETH_SymbioticBurners(
-        address who,
-        address burner,
-        uint256 maxRequests
-    ) internal virtual returns (uint256 firstRequestId, uint256 lastRequestId) {
+    function _triggerWithdrawal_swETH_SymbioticBurners(address who, address burner, uint256 maxRequests)
+        internal
+        virtual
+        returns (uint256 firstRequestId, uint256 lastRequestId)
+    {
         vm.startPrank(who);
         (firstRequestId, lastRequestId) = ISymbioticswETH_Burner(burner).triggerWithdrawal(maxRequests);
         vm.stopPrank();
@@ -209,11 +205,11 @@ contract SymbioticBurnersBindings is Test {
         vm.stopPrank();
     }
 
-    function _triggerWithdrawal_wstETH_SymbioticBurners(
-        address who,
-        address burner,
-        uint256 maxRequests
-    ) internal virtual returns (uint256[] memory requestIds) {
+    function _triggerWithdrawal_wstETH_SymbioticBurners(address who, address burner, uint256 maxRequests)
+        internal
+        virtual
+        returns (uint256[] memory requestIds)
+    {
         vm.startPrank(who);
         requestIds = ISymbioticwstETH_Burner(burner).triggerWithdrawal(maxRequests);
         vm.stopPrank();

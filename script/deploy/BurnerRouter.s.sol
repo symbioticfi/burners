@@ -18,16 +18,17 @@ contract BurnerRouterScript is Script {
     ) public {
         vm.startBroadcast();
 
-        address burnerRouter = SymbioticBurnersConstants.burnerRouterFactory().create(
-            IBurnerRouter.InitParams({
-                owner: owner,
-                collateral: collateral,
-                delay: delay,
-                globalReceiver: globalReceiver,
-                networkReceivers: networkReceivers,
-                operatorNetworkReceivers: operatorNetworkReceivers
-            })
-        );
+        address burnerRouter = SymbioticBurnersConstants.burnerRouterFactory()
+            .create(
+                IBurnerRouter.InitParams({
+                    owner: owner,
+                    collateral: collateral,
+                    delay: delay,
+                    globalReceiver: globalReceiver,
+                    networkReceivers: networkReceivers,
+                    operatorNetworkReceivers: operatorNetworkReceivers
+                })
+            );
 
         console2.log("Burner Router: ", burnerRouter);
 

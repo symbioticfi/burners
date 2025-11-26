@@ -85,7 +85,8 @@ contract rETH_BurnerTest is Test {
 
         vm.assume(
             burnAmount1 > depositAmount1
-                || IRocketTokenRETH(COLLATERAL).getEthValue(burnAmount1) > IRocketTokenRETH(COLLATERAL).getTotalCollateral()
+                || IRocketTokenRETH(COLLATERAL).getEthValue(burnAmount1)
+                    > IRocketTokenRETH(COLLATERAL).getTotalCollateral()
         );
 
         vm.expectRevert();

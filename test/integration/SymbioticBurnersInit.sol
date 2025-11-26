@@ -48,9 +48,7 @@ contract SymbioticBurnersInit is SymbioticCoreInit, SymbioticBurnersBindings {
         symbioticBurners = SymbioticBurnersConstants.burners();
     }
 
-    function _initBurners_SymbioticBurners(
-        bool useExisting
-    ) internal virtual {
+    function _initBurners_SymbioticBurners(bool useExisting) internal virtual {
         if (useExisting) {
             _initBurners_SymbioticBurners();
         } else {
@@ -129,9 +127,7 @@ contract SymbioticBurnersInit is SymbioticCoreInit, SymbioticBurnersBindings {
         symbioticBurnerRouterFactory = SymbioticBurnersConstants.burnerRouterFactory();
     }
 
-    function _initBurnerRouter_SymbioticBurners(
-        bool useExisting
-    ) internal virtual {
+    function _initBurnerRouter_SymbioticBurners(bool useExisting) internal virtual {
         if (useExisting) {
             _initBurnerRouter_SymbioticBurners();
         } else {
@@ -150,10 +146,11 @@ contract SymbioticBurnersInit is SymbioticCoreInit, SymbioticBurnersBindings {
 
     // ------------------------------------------------------------ BURNER-ROUTER-RELATED HELPERS ------------------------------------------------------------ //
 
-    function _getBurnerRouter_SymbioticBurners(
-        address collateral,
-        address globalReceiver
-    ) internal virtual returns (address) {
+    function _getBurnerRouter_SymbioticBurners(address collateral, address globalReceiver)
+        internal
+        virtual
+        returns (address)
+    {
         return _createBurnerRouter_SymbioticBurners({
             symbioticBurnerRouterFactory: symbioticBurnerRouterFactory,
             who: address(this),
@@ -186,10 +183,11 @@ contract SymbioticBurnersInit is SymbioticCoreInit, SymbioticBurnersBindings {
         });
     }
 
-    function _getBurnerRouterRandom_SymbioticBurners(
-        address collateral,
-        address globalReceiver
-    ) internal virtual returns (address) {
+    function _getBurnerRouterRandom_SymbioticBurners(address collateral, address globalReceiver)
+        internal
+        virtual
+        returns (address)
+    {
         return _getBurnerRouter_SymbioticBurners({
             owner: address(this),
             collateral: collateral,
@@ -236,11 +234,10 @@ contract SymbioticBurnersInit is SymbioticCoreInit, SymbioticBurnersBindings {
     //     }
     // }
 
-    function _anyoneTriggerTransfer_SymbioticBurners(
-        address anyone,
-        address burnerRouter,
-        address receiver
-    ) internal virtual {
+    function _anyoneTriggerTransfer_SymbioticBurners(address anyone, address burnerRouter, address receiver)
+        internal
+        virtual
+    {
         _triggerTransfer_SymbioticBurners(anyone, burnerRouter, receiver);
     }
 
@@ -248,11 +245,10 @@ contract SymbioticBurnersInit is SymbioticCoreInit, SymbioticBurnersBindings {
         _acceptGlobalReceiver_SymbioticBurners(anyone, burnerRouter);
     }
 
-    function _anyoneAcceptNetworkReceiver_SymbioticBurners(
-        address anyone,
-        address burnerRouter,
-        address network
-    ) internal virtual {
+    function _anyoneAcceptNetworkReceiver_SymbioticBurners(address anyone, address burnerRouter, address network)
+        internal
+        virtual
+    {
         _acceptNetworkReceiver_SymbioticBurners(anyone, burnerRouter, network);
     }
 
@@ -271,11 +267,10 @@ contract SymbioticBurnersInit is SymbioticCoreInit, SymbioticBurnersBindings {
 
     // ------------------------------------------------------------ CURATOR-RELATED HELPERS ------------------------------------------------------------ //
 
-    function _curatorSetGlobalReceiver_SymbioticBurners(
-        address curator,
-        address burnerRouter,
-        address receiver
-    ) internal virtual {
+    function _curatorSetGlobalReceiver_SymbioticBurners(address curator, address burnerRouter, address receiver)
+        internal
+        virtual
+    {
         _setGlobalReceiver_SymbioticBurners(curator, burnerRouter, receiver);
     }
 

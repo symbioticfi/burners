@@ -35,9 +35,8 @@ contract sfrxETH_Burner is UintRequests, IsfrxETH_Burner, IERC721Receiver {
     function triggerWithdrawal() external returns (uint256 requestId) {
         uint256 amount = IERC20(COLLATERAL).balanceOf(address(this));
 
-        requestId = IFraxEtherRedemptionQueue(FRAX_ETHER_REDEMPTION_QUEUE).enterRedemptionQueueViaSfrxEth(
-            address(this), uint120(amount)
-        );
+        requestId = IFraxEtherRedemptionQueue(FRAX_ETHER_REDEMPTION_QUEUE)
+            .enterRedemptionQueueViaSfrxEth(address(this), uint120(amount));
 
         _addRequestId(requestId);
 
@@ -47,14 +46,11 @@ contract sfrxETH_Burner is UintRequests, IsfrxETH_Burner, IERC721Receiver {
     /**
      * @inheritdoc IsfrxETH_Burner
      */
-    function triggerBurn(
-        uint256 requestId
-    ) external {
+    function triggerBurn(uint256 requestId) external {
         _removeRequestId(requestId);
 
-        IFraxEtherRedemptionQueue(FRAX_ETHER_REDEMPTION_QUEUE).burnRedemptionTicketNft(
-            requestId, payable(address(this))
-        );
+        IFraxEtherRedemptionQueue(FRAX_ETHER_REDEMPTION_QUEUE)
+            .burnRedemptionTicketNft(requestId, payable(address(this)));
 
         new SelfDestruct{value: address(this).balance}();
 

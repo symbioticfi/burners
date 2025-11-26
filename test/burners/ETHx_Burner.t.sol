@@ -45,9 +45,8 @@ contract ETHx_BurnerTest is Test {
         IETHx(COLLATERAL).mint(address(this), 500_000 ether);
         vm.stopPrank();
 
-        withdrawRequestMinimum = IStaderStakePoolsManager(STAKE_POOLS_MANAGER).previewDeposit(
-            IStaderConfig(STADER_CONFIG).getMinWithdrawAmount()
-        ) + 1;
+        withdrawRequestMinimum = IStaderStakePoolsManager(STAKE_POOLS_MANAGER)
+            .previewDeposit(IStaderConfig(STADER_CONFIG).getMinWithdrawAmount()) + 1;
         while (
             IStaderStakePoolsManager(STAKE_POOLS_MANAGER).previewWithdraw(withdrawRequestMinimum - 1)
                 >= IStaderConfig(STADER_CONFIG).getMinWithdrawAmount()
@@ -55,9 +54,8 @@ contract ETHx_BurnerTest is Test {
             withdrawRequestMinimum -= 1;
         }
 
-        withdrawRequestMaximum = IStaderStakePoolsManager(STAKE_POOLS_MANAGER).previewDeposit(
-            IStaderConfig(STADER_CONFIG).getMaxWithdrawAmount()
-        );
+        withdrawRequestMaximum = IStaderStakePoolsManager(STAKE_POOLS_MANAGER)
+            .previewDeposit(IStaderConfig(STADER_CONFIG).getMaxWithdrawAmount());
         while (
             IStaderStakePoolsManager(STAKE_POOLS_MANAGER).previewWithdraw(withdrawRequestMaximum + 1)
                 <= IStaderConfig(STADER_CONFIG).getMaxWithdrawAmount()
@@ -81,9 +79,7 @@ contract ETHx_BurnerTest is Test {
         uint256 firstRequestId_;
     }
 
-    function test_TriggerWithdrawal(
-        uint256 depositAmount1
-    ) public {
+    function test_TriggerWithdrawal(uint256 depositAmount1) public {
         depositAmount1 = bound(depositAmount1, withdrawRequestMinimum / 2, 50_000 ether);
 
         burner = new ETHx_Burner(COLLATERAL, STADER_CONFIG);
@@ -157,9 +153,7 @@ contract ETHx_BurnerTest is Test {
         burner.triggerWithdrawal(withdrawRequestMaximum_);
     }
 
-    function test_TriggerBurn(
-        uint256 depositAmount1
-    ) public {
+    function test_TriggerBurn(uint256 depositAmount1) public {
         depositAmount1 = bound(depositAmount1, withdrawRequestMaximum + withdrawRequestMinimum, 50_000 ether);
 
         burner = new ETHx_Burner(COLLATERAL, STADER_CONFIG);
@@ -188,9 +182,7 @@ contract ETHx_BurnerTest is Test {
         }
     }
 
-    function test_TriggerBurnRevertInvalidRequestId(
-        uint256 depositAmount1
-    ) public {
+    function test_TriggerBurnRevertInvalidRequestId(uint256 depositAmount1) public {
         depositAmount1 = bound(depositAmount1, withdrawRequestMinimum, 50_000 ether);
 
         burner = new ETHx_Burner(COLLATERAL, STADER_CONFIG);

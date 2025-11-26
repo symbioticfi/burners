@@ -21,9 +21,7 @@ contract mETH_Burner is UintRequests, ImETH_Burner {
      */
     address public immutable STAKING;
 
-    constructor(
-        address collateral
-    ) {
+    constructor(address collateral) {
         COLLATERAL = collateral;
 
         STAKING = IMETH(COLLATERAL).stakingContract();
@@ -47,9 +45,7 @@ contract mETH_Burner is UintRequests, ImETH_Burner {
     /**
      * @inheritdoc ImETH_Burner
      */
-    function triggerBurn(
-        uint256 requestId
-    ) external {
+    function triggerBurn(uint256 requestId) external {
         _removeRequestId(requestId);
 
         IStaking(STAKING).claimUnstakeRequest(requestId);

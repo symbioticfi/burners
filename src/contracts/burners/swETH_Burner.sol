@@ -35,9 +35,7 @@ contract swETH_Burner is UintRequests, IswETH_Burner, IERC721Receiver {
     /**
      * @inheritdoc IswETH_Burner
      */
-    function triggerWithdrawal(
-        uint256 maxRequests
-    ) external returns (uint256 firstRequestId, uint256 lastRequestId) {
+    function triggerWithdrawal(uint256 maxRequests) external returns (uint256 firstRequestId, uint256 lastRequestId) {
         uint256 amount = IERC20(COLLATERAL).balanceOf(address(this));
 
         uint256 maxWithdrawalAmount = ISwEXIT(SWEXIT).withdrawRequestMaximum();
@@ -62,9 +60,8 @@ contract swETH_Burner is UintRequests, IswETH_Burner, IERC721Receiver {
             ISwEXIT(SWEXIT).createWithdrawRequest(maxWithdrawalAmount);
         }
         _addRequestId(requestId);
-        ISwEXIT(SWEXIT).createWithdrawRequest(
-            Math.min(amount - requestsMinusOne * maxWithdrawalAmount, maxWithdrawalAmount)
-        );
+        ISwEXIT(SWEXIT)
+            .createWithdrawRequest(Math.min(amount - requestsMinusOne * maxWithdrawalAmount, maxWithdrawalAmount));
 
         emit TriggerWithdrawal(msg.sender, firstRequestId, lastRequestId);
 
@@ -74,9 +71,7 @@ contract swETH_Burner is UintRequests, IswETH_Burner, IERC721Receiver {
     /**
      * @inheritdoc IswETH_Burner
      */
-    function triggerBurn(
-        uint256 requestId
-    ) external {
+    function triggerBurn(uint256 requestId) external {
         _removeRequestId(requestId);
 
         ISwEXIT(SWEXIT).finalizeWithdrawal(requestId);

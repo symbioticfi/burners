@@ -190,9 +190,7 @@ contract wstETH_BurnerTest is Test {
         }
     }
 
-    function test_TriggerWithdrawalRevertInsufficientWithdrawal(
-        uint256 depositAmount1
-    ) public {
+    function test_TriggerWithdrawalRevertInsufficientWithdrawal(uint256 depositAmount1) public {
         depositAmount1 = bound(depositAmount1, 1, MIN_STETH_WITHDRAWAL_AMOUNT);
         uint256 stETHAmount1 = IWstETH(COLLATERAL).getStETHByWstETH(depositAmount1);
         vm.assume(stETHAmount1 < MIN_STETH_WITHDRAWAL_AMOUNT);
@@ -209,9 +207,7 @@ contract wstETH_BurnerTest is Test {
         burner.triggerWithdrawal(1);
     }
 
-    function test_TriggerBurn(
-        uint256 depositAmount1
-    ) public {
+    function test_TriggerBurn(uint256 depositAmount1) public {
         depositAmount1 = bound(depositAmount1, 50, 10_000 ether);
 
         burner = new wstETH_Burner(COLLATERAL, LIDO_WITHDRAWAL_QUEUE);
@@ -239,9 +235,7 @@ contract wstETH_BurnerTest is Test {
         }
     }
 
-    function test_TriggerBurnRevertInvalidRequestId(
-        uint256 depositAmount1
-    ) public {
+    function test_TriggerBurnRevertInvalidRequestId(uint256 depositAmount1) public {
         depositAmount1 = bound(depositAmount1, 50, 10_000 ether);
 
         burner = new wstETH_Burner(COLLATERAL, LIDO_WITHDRAWAL_QUEUE);
@@ -262,9 +256,7 @@ contract wstETH_BurnerTest is Test {
         burner.triggerBurn(0);
     }
 
-    function test_TriggerBurnBatch(
-        uint256 depositAmount1
-    ) public {
+    function test_TriggerBurnBatch(uint256 depositAmount1) public {
         depositAmount1 = bound(depositAmount1, 50, 10_000 ether);
 
         burner = new wstETH_Burner(COLLATERAL, LIDO_WITHDRAWAL_QUEUE);
@@ -286,9 +278,8 @@ contract wstETH_BurnerTest is Test {
         assertEq(address(burner).balance, 0);
         burner.triggerBurnBatch(
             requestsIds,
-            IWithdrawalQueue(LIDO_WITHDRAWAL_QUEUE).findCheckpointHints(
-                requestsIds, 1, IWithdrawalQueue(LIDO_WITHDRAWAL_QUEUE).getLastCheckpointIndex()
-            )
+            IWithdrawalQueue(LIDO_WITHDRAWAL_QUEUE)
+                .findCheckpointHints(requestsIds, 1, IWithdrawalQueue(LIDO_WITHDRAWAL_QUEUE).getLastCheckpointIndex())
         );
         assertEq(address(burner).balance, 0);
 
@@ -296,9 +287,7 @@ contract wstETH_BurnerTest is Test {
         assertEq(requestsIds1.length, 0);
     }
 
-    function test_TriggerBurnBatchRevertInvalidRequestId(
-        uint256 depositAmount1
-    ) public {
+    function test_TriggerBurnBatchRevertInvalidRequestId(uint256 depositAmount1) public {
         depositAmount1 = bound(depositAmount1, 50, 10_000 ether);
 
         burner = new wstETH_Burner(COLLATERAL, LIDO_WITHDRAWAL_QUEUE);
@@ -317,9 +306,8 @@ contract wstETH_BurnerTest is Test {
         }
         vm.stopPrank();
 
-        uint256[] memory hints = IWithdrawalQueue(LIDO_WITHDRAWAL_QUEUE).findCheckpointHints(
-            requestsIds, 1, IWithdrawalQueue(LIDO_WITHDRAWAL_QUEUE).getLastCheckpointIndex()
-        );
+        uint256[] memory hints = IWithdrawalQueue(LIDO_WITHDRAWAL_QUEUE)
+            .findCheckpointHints(requestsIds, 1, IWithdrawalQueue(LIDO_WITHDRAWAL_QUEUE).getLastCheckpointIndex());
         requestsIds[requestsIds.length - 1] = 0;
         vm.expectRevert(IUintRequests.InvalidRequestId.selector);
         burner.triggerBurnBatch(requestsIds, hints);

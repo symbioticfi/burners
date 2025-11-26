@@ -106,9 +106,7 @@ contract mETH_BurnerTest is Test {
         assertEq(requestsIds[1], nextRequestId);
     }
 
-    function test_TriggerBurn(
-        uint256 depositAmount1
-    ) public {
+    function test_TriggerBurn(uint256 depositAmount1) public {
         depositAmount1 = bound(depositAmount1, IStaking(STAKING).minimumUnstakeBound(), 10_000 ether);
 
         burner = new mETH_Burner(COLLATERAL);
@@ -136,9 +134,7 @@ contract mETH_BurnerTest is Test {
         assertEq(burner.requestIdsLength(), 0);
     }
 
-    function test_TriggerBurnRevertInvalidRequestId(
-        uint256 depositAmount1
-    ) public {
+    function test_TriggerBurnRevertInvalidRequestId(uint256 depositAmount1) public {
         depositAmount1 = bound(depositAmount1, IStaking(STAKING).minimumUnstakeBound(), 10_000 ether);
 
         burner = new mETH_Burner(COLLATERAL);
@@ -169,13 +165,9 @@ interface ITransparentUpgradeableProxy {
 
     function implementation() external view returns (address);
 
-    function changeAdmin(
-        address
-    ) external;
+    function changeAdmin(address) external;
 
-    function upgradeTo(
-        address
-    ) external;
+    function upgradeTo(address) external;
 
     function upgradeToAndCall(address, bytes memory) external payable;
 }

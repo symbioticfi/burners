@@ -18,10 +18,9 @@ interface IFraxEtherRedemptionQueue {
     /// @param _sfrxEthAmount Amount of sfrxETH to redeem (in shares / balanceOf)
     /// @param _nftId The ID of the FrxEthRedemptionTicket NFT
     /// @dev Must call approve/permit on frxEth contract prior to this call
-    function enterRedemptionQueueViaSfrxEth(
-        address _recipient,
-        uint120 _sfrxEthAmount
-    ) external returns (uint256 _nftId);
+    function enterRedemptionQueueViaSfrxEth(address _recipient, uint120 _sfrxEthAmount)
+        external
+        returns (uint256 _nftId);
 
     /// @notice Redeems a FrxETHRedemptionTicket NFT for ETH. Must have reached the maturity date first.
     /// @param _nftId The ID of the NFT

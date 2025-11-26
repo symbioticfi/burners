@@ -35,15 +35,11 @@ contract AddressRequests is IAddressRequests {
         }
     }
 
-    function _addRequestId(
-        address requestId
-    ) internal {
+    function _addRequestId(address requestId) internal {
         _requestIds.add(requestId);
     }
 
-    function _removeRequestId(
-        address requestId
-    ) internal {
+    function _removeRequestId(address requestId) internal {
         if (!_requestIds.remove(requestId)) {
             revert InvalidRequestId();
         }

@@ -21,12 +21,15 @@ contract SymbioticBurnersIntegration is SymbioticBurnersInit, SymbioticCoreInteg
         SymbioticCoreIntegration.setUp();
     }
 
-    function _getVaultRandom_SymbioticCore(
-        address[] memory operators,
-        address collateral
-    ) internal virtual override returns (address) {
-        uint48 epochDuration =
-            uint48(_randomWithBounds_Symbiotic(SYMBIOTIC_CORE_MIN_EPOCH_DURATION, SYMBIOTIC_CORE_MAX_EPOCH_DURATION));
+    function _getVaultRandom_SymbioticCore(address[] memory operators, address collateral)
+        internal
+        virtual
+        override
+        returns (address)
+    {
+        uint48 epochDuration = uint48(
+            _randomWithBounds_Symbiotic(SYMBIOTIC_CORE_MIN_EPOCH_DURATION, SYMBIOTIC_CORE_MAX_EPOCH_DURATION)
+        );
         uint48 vetoDuration = uint48(
             _randomWithBounds_Symbiotic(
                 SYMBIOTIC_CORE_MIN_VETO_DURATION, Math.min(SYMBIOTIC_CORE_MAX_VETO_DURATION, epochDuration / 2)

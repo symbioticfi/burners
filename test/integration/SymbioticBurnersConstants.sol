@@ -20,7 +20,8 @@ library SymbioticBurnersConstants {
     }
 
     function isSupported() internal view returns (bool) {
-        return (block.chainid == 1 || block.chainid == 17_000 || block.chainid == 11_155_111 || block.chainid == 560_048);
+        return
+            (block.chainid == 1 || block.chainid == 17_000 || block.chainid == 11_155_111 || block.chainid == 560_048);
     }
 
     function burners() internal view returns (Burners memory) {
@@ -111,9 +112,7 @@ library SymbioticBurnersConstants {
         return block.chainid == 1 || block.chainid == 17_000 || block.chainid == 11_155_111;
     }
 
-    function burner(
-        string memory name
-    ) internal view returns (address) {
+    function burner(string memory name) internal view returns (address) {
         if (name.equal("ETHx_Burner")) {
             return address(burners().ETHx_Burner);
         } else if (name.equal("mETH_Burner")) {
@@ -131,9 +130,7 @@ library SymbioticBurnersConstants {
         }
     }
 
-    function burnerSupported(
-        string memory name
-    ) internal view returns (bool) {
+    function burnerSupported(string memory name) internal view returns (bool) {
         if (name.equal("ETHx_Burner")) {
             return ETHx_BurnerSupported();
         } else if (name.equal("mETH_Burner")) {
@@ -161,9 +158,7 @@ library SymbioticBurnersConstants {
         result[5] = "wstETH_Burner";
     }
 
-    function tokenAddressToBurner(
-        address token
-    ) internal view returns (address) {
+    function tokenAddressToBurner(address token) internal view returns (address) {
         string[] memory allTokens = SymbioticCoreConstants.allTokens();
         for (uint256 i; i < allTokens.length; ++i) {
             if (token == SymbioticCoreConstants.token(allTokens[i])) {
@@ -173,9 +168,7 @@ library SymbioticBurnersConstants {
         revert("SymbioticBurnersConstants.tokenAddressToBurner(): token not found");
     }
 
-    function tokenAddressToBurnerSupported(
-        address token
-    ) internal view returns (bool) {
+    function tokenAddressToBurnerSupported(address token) internal view returns (bool) {
         string[] memory allTokens = SymbioticCoreConstants.allTokens();
         for (uint256 i; i < allTokens.length; ++i) {
             if (!SymbioticCoreConstants.tokenSupported(allTokens[i])) {
