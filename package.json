@@ -1,30 +1,30 @@
 {
-  "name": "@symbioticfi/burners",
-  "version": "1.0.0",
-  "description": "Symbiotic Burners repository contains an implementation of Burner Router allowing the construction of flexible on-slash burning mechanics and several pure Burners for different assets.",
-  "homepage": "https://symbiotic.fi/",
-  "bugs": "https://github.com/symbioticfi/burners/issues",
-  "license": "MIT",
-  "author": "Symbiotic Team",
-  "files": [
-    "src/**/*",
-    "test/mocks/**/*",
-    "out/**/*.json"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/symbioticfi/burners.git"
-  },
-  "keywords": [
-    "solidity",
-    "ethereum",
-    "smart",
-    "contracts",
-    "security"
-  ],
-  "dependencies": {
-    "@openzeppelin/contracts": "5.0.2",
-    "@openzeppelin/contracts-upgradeable": "5.0.2",
-    "@symbioticfi/core": "1.0.0-devnet.9"
-  }
+    "name": "@symbioticfi/burners",
+    "version": "1.0.0",
+    "description": "Symbiotic Burners repository contains an implementation of Burner Router allowing the construction of flexible on-slash burning mechanics and several pure Burners for different assets.",
+    "homepage": "https://symbiotic.fi/",
+    "bugs": "https://github.com/symbioticfi/burners/issues",
+    "license": "MIT",
+    "author": "Symbiotic Team",
+    "files": [
+        "src/**/*",
+        "test/mocks/**/*",
+        "out/**/*.json"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/symbioticfi/burners.git"
+    },
+    "keywords": [
+        "solidity",
+        "ethereum",
+        "smart",
+        "contracts",
+        "security"
+    ],
+    "dependencies": {
+        "@openzeppelin/contracts": "5.0.2",
+        "@openzeppelin/contracts-upgradeable": "5.0.2",
+        "@symbioticfi/core": "1.0.0-devnet.9"
+    }
 }
