@@ -19,6 +19,10 @@ library SymbioticBurnersConstants {
         ISymbioticwstETH_Burner wstETH_Burner;
     }
 
+    function isSupported() internal view returns (bool) {
+        return (block.chainid == 1 || block.chainid == 17_000 || block.chainid == 11_155_111 || block.chainid == 560_048);
+    }
+
     function burners() internal view returns (Burners memory) {
         if (block.chainid == 1) {
             // mainnet
