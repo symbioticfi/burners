@@ -9,7 +9,6 @@
     "files": [
         "src/**/*",
         "test/mocks/**/*",
-        "out/**/*.json",
         "abis/**/*",
         "bindings/ts-viem/**/*"
     ],
