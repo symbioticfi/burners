@@ -75,18 +75,20 @@ contract SymbioticBurnersIntegration is SymbioticBurnersInit, SymbioticCoreInteg
         address burnerRouter = _getBurnerRouterRandom_SymbioticBurners(collateral, globalReceiver);
 
         return _getVault_SymbioticCore(
-            operators.length == 0 ? address(this) : _randomPick_Symbiotic(operators),
-            collateral,
-            burnerRouter,
-            epochDuration,
-            new address[](0),
-            0,
-            delegatorIndex,
-            address(0),
-            address(0),
-            true,
-            slasherIndex,
-            vetoDuration
+            VaultParams({
+                owner: operators.length == 0 ? address(this) : _randomPick_Symbiotic(operators),
+                collateral: collateral,
+                burner: burnerRouter,
+                epochDuration: epochDuration,
+                whitelistedDepositors: new address[](0),
+                depositLimit: 0,
+                delegatorIndex: delegatorIndex,
+                hook: address(0),
+                network: address(0),
+                withSlasher: true,
+                slasherIndex: slasherIndex,
+                vetoDuration: vetoDuration
+            })
         );
     }
 }
