@@ -22,9 +22,14 @@ out/**/
 # Docs
 docs/
 
+# Node modules
+node_modules/
+
 # Dotenv file
 .env
 
 # Other files
 .gas-snapshot
 lcov.info
+
+
