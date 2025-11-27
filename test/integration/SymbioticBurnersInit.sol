@@ -86,17 +86,15 @@ contract SymbioticBurnersInit is SymbioticCoreInit, SymbioticBurnersBindings {
             }
             ISymbioticswETH_Burner swETH_Burner;
             if (SymbioticBurnersConstants.burnerSupported("swETH_Burner")) {
-                constructorArgs =
-                    abi.encode(SymbioticCoreConstants.token("swETH"), SymbioticBurnersConstants.swEXIT());
+                constructorArgs = abi.encode(SymbioticCoreConstants.token("swETH"), SymbioticBurnersConstants.swEXIT());
                 swETH_Burner = ISymbioticswETH_Burner(
                     _deployCreate2(bytes32("swETH_Burner"), SymbioticBurnerBytecode.swETH_Burner(), constructorArgs)
                 );
             }
             ISymbioticwstETH_Burner wstETH_Burner;
             if (SymbioticBurnersConstants.burnerSupported("wstETH_Burner")) {
-                constructorArgs = abi.encode(
-                    SymbioticCoreConstants.token("wstETH"), SymbioticBurnersConstants.lidoWithdrawalQueue()
-                );
+                constructorArgs =
+                    abi.encode(SymbioticCoreConstants.token("wstETH"), SymbioticBurnersConstants.lidoWithdrawalQueue());
                 wstETH_Burner = ISymbioticwstETH_Burner(
                     _deployCreate2(bytes32("wstETH_Burner"), SymbioticBurnerBytecode.wstETH_Burner(), constructorArgs)
                 );
