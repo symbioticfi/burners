@@ -7,6 +7,7 @@ import "./SymbioticBurnersImports.sol";
 
 import {SymbioticBurnersConstants} from "./SymbioticBurnersConstants.sol";
 import {SymbioticBurnersBindings} from "./SymbioticBurnersBindings.sol";
+import {SymbioticBurnerBytecode} from "./SymbioticBurnerBytecode.sol";
 
 import {SafeERC20, IERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -18,7 +19,6 @@ contract SymbioticBurnersInit is SymbioticCoreInit, SymbioticBurnersBindings {
 
     // General config
 
-    string public SYMBIOTIC_BURNERS_PROJECT_ROOT = "";
     bool public SYMBIOTIC_BURNERS_USE_EXISTING_DEPLOYMENT = false;
     bool public SYMBIOTIC_BURNERS_NEED_BURNERS = true;
     bool public SYMBIOTIC_BURNERS_NEED_BURNER_ROUTER = true;
@@ -48,69 +48,55 @@ contract SymbioticBurnersInit is SymbioticCoreInit, SymbioticBurnersBindings {
         symbioticBurners = SymbioticBurnersConstants.burners();
     }
 
-    function _initBurners_SymbioticBurners(
-        bool useExisting
-    ) internal virtual {
+    function _initBurners_SymbioticBurners(bool useExisting) internal virtual {
         if (useExisting) {
             _initBurners_SymbioticBurners();
         } else {
+            bytes memory constructorArgs;
             ISymbioticETHx_Burner ETHx_Burner;
             if (SymbioticBurnersConstants.burnerSupported("ETHx_Burner")) {
+                constructorArgs =
+                    abi.encode(SymbioticCoreConstants.token("ETHx"), SymbioticBurnersConstants.staderConfig());
                 ETHx_Burner = ISymbioticETHx_Burner(
-                    deployCode(
-                        string.concat(SYMBIOTIC_BURNERS_PROJECT_ROOT, "out/ETHx_Burner.sol/ETHx_Burner.json"),
-                        abi.encode(SymbioticCoreConstants.token("ETHx"), SymbioticBurnersConstants.staderConfig())
-                    )
+                    _deployCreate2(bytes32("ETHx_Burner"), SymbioticBurnerBytecode.ETHx_Burner(), constructorArgs)
                 );
             }
             ISymbioticmETH_Burner mETH_Burner;
             if (SymbioticBurnersConstants.burnerSupported("mETH_Burner")) {
+                constructorArgs = abi.encode(SymbioticCoreConstants.token("mETH"));
                 mETH_Burner = ISymbioticmETH_Burner(
-                    deployCode(
-                        string.concat(SYMBIOTIC_BURNERS_PROJECT_ROOT, "out/mETH_Burner.sol/mETH_Burner.json"),
-                        abi.encode(SymbioticCoreConstants.token("mETH"))
-                    )
+                    _deployCreate2(bytes32("mETH_Burner"), SymbioticBurnerBytecode.mETH_Burner(), constructorArgs)
                 );
             }
             ISymbioticrETH_Burner rETH_Burner;
             if (SymbioticBurnersConstants.burnerSupported("rETH_Burner")) {
+                constructorArgs = abi.encode(SymbioticCoreConstants.token("rETH"));
                 rETH_Burner = ISymbioticrETH_Burner(
-                    deployCode(
-                        string.concat(SYMBIOTIC_BURNERS_PROJECT_ROOT, "out/rETH_Burner.sol/rETH_Burner.json"),
-                        abi.encode(SymbioticCoreConstants.token("rETH"))
-                    )
+                    _deployCreate2(bytes32("rETH_Burner"), SymbioticBurnerBytecode.rETH_Burner(), constructorArgs)
                 );
             }
             ISymbioticsfrxETH_Burner sfrxETH_Burner;
             if (SymbioticBurnersConstants.burnerSupported("sfrxETH_Burner")) {
+                constructorArgs = abi.encode(
+                    SymbioticCoreConstants.token("sfrxETH"), SymbioticBurnersConstants.fraxEtherRedemptionQueue()
+                );
                 sfrxETH_Burner = ISymbioticsfrxETH_Burner(
-                    deployCode(
-                        string.concat(SYMBIOTIC_BURNERS_PROJECT_ROOT, "out/sfrxETH_Burner.sol/sfrxETH_Burner.json"),
-                        abi.encode(
-                            SymbioticCoreConstants.token("sfrxETH"),
-                            SymbioticBurnersConstants.fraxEtherRedemptionQueue()
-                        )
-                    )
+                    _deployCreate2(bytes32("sfrxETH_Burner"), SymbioticBurnerBytecode.sfrxETH_Burner(), constructorArgs)
                 );
             }
             ISymbioticswETH_Burner swETH_Burner;
             if (SymbioticBurnersConstants.burnerSupported("swETH_Burner")) {
+                constructorArgs = abi.encode(SymbioticCoreConstants.token("swETH"), SymbioticBurnersConstants.swEXIT());
                 swETH_Burner = ISymbioticswETH_Burner(
-                    deployCode(
-                        string.concat(SYMBIOTIC_BURNERS_PROJECT_ROOT, "out/swETH_Burner.sol/swETH_Burner.json"),
-                        abi.encode(SymbioticCoreConstants.token("swETH"), SymbioticBurnersConstants.swEXIT())
-                    )
+                    _deployCreate2(bytes32("swETH_Burner"), SymbioticBurnerBytecode.swETH_Burner(), constructorArgs)
                 );
             }
             ISymbioticwstETH_Burner wstETH_Burner;
             if (SymbioticBurnersConstants.burnerSupported("wstETH_Burner")) {
+                constructorArgs =
+                    abi.encode(SymbioticCoreConstants.token("wstETH"), SymbioticBurnersConstants.lidoWithdrawalQueue());
                 wstETH_Burner = ISymbioticwstETH_Burner(
-                    deployCode(
-                        string.concat(SYMBIOTIC_BURNERS_PROJECT_ROOT, "out/wstETH_Burner.sol/wstETH_Burner.json"),
-                        abi.encode(
-                            SymbioticCoreConstants.token("wstETH"), SymbioticBurnersConstants.lidoWithdrawalQueue()
-                        )
-                    )
+                    _deployCreate2(bytes32("wstETH_Burner"), SymbioticBurnerBytecode.wstETH_Burner(), constructorArgs)
                 );
             }
 
@@ -129,19 +115,16 @@ contract SymbioticBurnersInit is SymbioticCoreInit, SymbioticBurnersBindings {
         symbioticBurnerRouterFactory = SymbioticBurnersConstants.burnerRouterFactory();
     }
 
-    function _initBurnerRouter_SymbioticBurners(
-        bool useExisting
-    ) internal virtual {
+    function _initBurnerRouter_SymbioticBurners(bool useExisting) internal virtual {
         if (useExisting) {
             _initBurnerRouter_SymbioticBurners();
         } else {
             address burnerRouterImplementation =
-                deployCode(string.concat(SYMBIOTIC_BURNERS_PROJECT_ROOT, "out/BurnerRouter.sol/BurnerRouter.json"));
+                _deployCreate2(bytes32("BurnerRouter"), SymbioticBurnerBytecode.BurnerRouter(), "");
             symbioticBurnerRouterFactory = ISymbioticBurnerRouterFactory(
-                deployCode(
-                    string.concat(
-                        SYMBIOTIC_BURNERS_PROJECT_ROOT, "out/BurnerRouterFactory.sol/BurnerRouterFactory.json"
-                    ),
+                _deployCreate2(
+                    bytes32("BurnerRouterFactory"),
+                    SymbioticBurnerBytecode.BurnerRouterFactory(),
                     abi.encode(burnerRouterImplementation)
                 )
             );
@@ -150,10 +133,11 @@ contract SymbioticBurnersInit is SymbioticCoreInit, SymbioticBurnersBindings {
 
     // ------------------------------------------------------------ BURNER-ROUTER-RELATED HELPERS ------------------------------------------------------------ //
 
-    function _getBurnerRouter_SymbioticBurners(
-        address collateral,
-        address globalReceiver
-    ) internal virtual returns (address) {
+    function _getBurnerRouter_SymbioticBurners(address collateral, address globalReceiver)
+        internal
+        virtual
+        returns (address)
+    {
         return _createBurnerRouter_SymbioticBurners({
             symbioticBurnerRouterFactory: symbioticBurnerRouterFactory,
             who: address(this),
@@ -186,10 +170,11 @@ contract SymbioticBurnersInit is SymbioticCoreInit, SymbioticBurnersBindings {
         });
     }
 
-    function _getBurnerRouterRandom_SymbioticBurners(
-        address collateral,
-        address globalReceiver
-    ) internal virtual returns (address) {
+    function _getBurnerRouterRandom_SymbioticBurners(address collateral, address globalReceiver)
+        internal
+        virtual
+        returns (address)
+    {
         return _getBurnerRouter_SymbioticBurners({
             owner: address(this),
             collateral: collateral,
@@ -236,11 +221,10 @@ contract SymbioticBurnersInit is SymbioticCoreInit, SymbioticBurnersBindings {
     //     }
     // }
 
-    function _anyoneTriggerTransfer_SymbioticBurners(
-        address anyone,
-        address burnerRouter,
-        address receiver
-    ) internal virtual {
+    function _anyoneTriggerTransfer_SymbioticBurners(address anyone, address burnerRouter, address receiver)
+        internal
+        virtual
+    {
         _triggerTransfer_SymbioticBurners(anyone, burnerRouter, receiver);
     }
 
@@ -248,11 +232,10 @@ contract SymbioticBurnersInit is SymbioticCoreInit, SymbioticBurnersBindings {
         _acceptGlobalReceiver_SymbioticBurners(anyone, burnerRouter);
     }
 
-    function _anyoneAcceptNetworkReceiver_SymbioticBurners(
-        address anyone,
-        address burnerRouter,
-        address network
-    ) internal virtual {
+    function _anyoneAcceptNetworkReceiver_SymbioticBurners(address anyone, address burnerRouter, address network)
+        internal
+        virtual
+    {
         _acceptNetworkReceiver_SymbioticBurners(anyone, burnerRouter, network);
     }
 
@@ -271,11 +254,10 @@ contract SymbioticBurnersInit is SymbioticCoreInit, SymbioticBurnersBindings {
 
     // ------------------------------------------------------------ CURATOR-RELATED HELPERS ------------------------------------------------------------ //
 
-    function _curatorSetGlobalReceiver_SymbioticBurners(
-        address curator,
-        address burnerRouter,
-        address receiver
-    ) internal virtual {
+    function _curatorSetGlobalReceiver_SymbioticBurners(address curator, address burnerRouter, address receiver)
+        internal
+        virtual
+    {
         _setGlobalReceiver_SymbioticBurners(curator, burnerRouter, receiver);
     }
 

@@ -78,9 +78,7 @@ contract sUSDe_Burner is AddressRequests, IERC1271, IsUSDe_Burner {
     /**
      * @inheritdoc IsUSDe_Burner
      */
-    function triggerClaim(
-        address requestId
-    ) external {
+    function triggerClaim(address requestId) external {
         _removeRequestId(requestId);
 
         sUSDe_Miniburner(requestId).triggerClaim();
@@ -106,9 +104,7 @@ contract sUSDe_Burner is AddressRequests, IERC1271, IsUSDe_Burner {
     /**
      * @inheritdoc IsUSDe_Burner
      */
-    function triggerBurn(
-        address asset
-    ) external {
+    function triggerBurn(address asset) external {
         if (asset == COLLATERAL || asset == USDE) {
             revert InvalidAsset();
         }

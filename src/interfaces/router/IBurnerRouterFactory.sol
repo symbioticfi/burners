@@ -11,7 +11,5 @@ interface IBurnerRouterFactory is IRegistry {
      * @param params initial parameters needed for a burner router contract deployment
      * @return address of the created burner router contract
      */
-    function create(
-        IBurnerRouter.InitParams calldata params
-    ) external returns (address);
+    function create(IBurnerRouter.InitParams calldata params) external returns (address);
 }

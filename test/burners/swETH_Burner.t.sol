@@ -180,9 +180,7 @@ contract swETH_BurnerTest is Test {
         }
     }
 
-    function test_TriggerWithdrawalRevertInsufficientWithdrawal(
-        uint256 depositAmount1
-    ) public {
+    function test_TriggerWithdrawalRevertInsufficientWithdrawal(uint256 depositAmount1) public {
         depositAmount1 = bound(depositAmount1, 1, withdrawRequestMinimum - 1);
 
         burner = new swETH_Burner(COLLATERAL, SWEXIT);
@@ -197,9 +195,7 @@ contract swETH_BurnerTest is Test {
         burner.triggerWithdrawal(1);
     }
 
-    function test_TriggerBurn(
-        uint256 depositAmount1
-    ) public {
+    function test_TriggerBurn(uint256 depositAmount1) public {
         depositAmount1 = bound(depositAmount1, withdrawRequestMinimum, 10_000 ether);
 
         burner = new swETH_Burner(COLLATERAL, SWEXIT);
@@ -225,9 +221,7 @@ contract swETH_BurnerTest is Test {
         }
     }
 
-    function test_TriggerBurnRevertInvalidRequestId(
-        uint256 depositAmount1
-    ) public {
+    function test_TriggerBurnRevertInvalidRequestId(uint256 depositAmount1) public {
         depositAmount1 = bound(depositAmount1, withdrawRequestMinimum, 10_000 ether);
 
         burner = new swETH_Burner(COLLATERAL, SWEXIT);

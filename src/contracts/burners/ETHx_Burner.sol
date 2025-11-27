@@ -51,9 +51,7 @@ contract ETHx_Burner is UintRequests, Multicall, IETHx_Burner {
     /**
      * @inheritdoc IETHx_Burner
      */
-    function triggerWithdrawal(
-        uint256 maxWithdrawalAmount
-    ) external returns (uint256 requestId) {
+    function triggerWithdrawal(uint256 maxWithdrawalAmount) external returns (uint256 requestId) {
         uint256 maxETHWithdrawAmount = IStaderConfig(STADER_CONFIG).getMaxWithdrawAmount();
         if (
             IStaderStakePoolsManager(STAKE_POOLS_MANAGER).previewWithdraw(maxWithdrawalAmount) > maxETHWithdrawAmount
@@ -63,9 +61,8 @@ contract ETHx_Burner is UintRequests, Multicall, IETHx_Burner {
             revert InvalidETHxMaximumWithdrawal();
         }
 
-        requestId = IUserWithdrawalManager(USER_WITHDRAW_MANAGER).requestWithdraw(
-            Math.min(IERC20(COLLATERAL).balanceOf(address(this)), maxWithdrawalAmount), address(this)
-        );
+        requestId = IUserWithdrawalManager(USER_WITHDRAW_MANAGER)
+            .requestWithdraw(Math.min(IERC20(COLLATERAL).balanceOf(address(this)), maxWithdrawalAmount), address(this));
 
         _addRequestId(requestId);
 
@@ -75,9 +72,7 @@ contract ETHx_Burner is UintRequests, Multicall, IETHx_Burner {
     /**
      * @inheritdoc IETHx_Burner
      */
-    function triggerBurn(
-        uint256 requestId
-    ) external {
+    function triggerBurn(uint256 requestId) external {
         _requestIds.remove(requestId);
 
         IUserWithdrawalManager(USER_WITHDRAW_MANAGER).claim(requestId);

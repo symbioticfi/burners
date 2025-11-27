@@ -106,9 +106,7 @@ contract sfrxETH_BurnerTest is Test {
         assertEq(requestsIds[1], nextRequestId);
     }
 
-    function test_TriggerBurn(
-        uint256 depositAmount1
-    ) public {
+    function test_TriggerBurn(uint256 depositAmount1) public {
         depositAmount1 = bound(depositAmount1, 1, 10_000 ether);
 
         burner = new sfrxETH_Burner(COLLATERAL, FRAX_ETHER_REDEMPTION_QUEUE);
@@ -131,9 +129,7 @@ contract sfrxETH_BurnerTest is Test {
         assertEq(burner.requestIdsLength(), 0);
     }
 
-    function test_TriggerBurnRevertInvalidRequestId(
-        uint256 depositAmount1
-    ) public {
+    function test_TriggerBurnRevertInvalidRequestId(uint256 depositAmount1) public {
         depositAmount1 = bound(depositAmount1, 1, 10_000 ether);
 
         burner = new sfrxETH_Burner(COLLATERAL, FRAX_ETHER_REDEMPTION_QUEUE);

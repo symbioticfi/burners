@@ -12,18 +12,14 @@ contract rETH_Burner is IrETH_Burner {
      */
     address public immutable COLLATERAL;
 
-    constructor(
-        address collateral
-    ) {
+    constructor(address collateral) {
         COLLATERAL = collateral;
     }
 
     /**
      * @inheritdoc IrETH_Burner
      */
-    function triggerBurn(
-        uint256 amount
-    ) external {
+    function triggerBurn(uint256 amount) external {
         IRocketTokenRETH(COLLATERAL).burn(amount);
 
         uint256 ethToBurn = address(this).balance;

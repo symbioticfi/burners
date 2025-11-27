@@ -35,15 +35,11 @@ contract UintRequests is IUintRequests {
         }
     }
 
-    function _addRequestId(
-        uint256 requestId
-    ) internal {
+    function _addRequestId(uint256 requestId) internal {
         _requestIds.add(requestId);
     }
 
-    function _removeRequestId(
-        uint256 requestId
-    ) internal {
+    function _removeRequestId(uint256 requestId) internal {
         if (!_requestIds.remove(requestId)) {
             revert InvalidRequestId();
         }

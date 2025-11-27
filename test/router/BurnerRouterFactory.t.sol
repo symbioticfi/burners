@@ -163,9 +163,7 @@ contract BurnerRouterFactoryTest is Test {
 
         for (uint160 i; i < N2; ++i) {
             operatorNetworkReceivers[i] = IBurnerRouter.OperatorNetworkReceiver({
-                network: address(i * 2 + 3),
-                operator: address(i * 2 + 1),
-                receiver: address(i * 2 + 2)
+                network: address(i * 2 + 3), operator: address(i * 2 + 1), receiver: address(i * 2 + 2)
             });
         }
 
@@ -228,9 +226,7 @@ contract BurnerRouterFactoryTest is Test {
 
         for (uint160 i; i < N2; ++i) {
             operatorNetworkReceivers[i] = IBurnerRouter.OperatorNetworkReceiver({
-                network: address(i * 2 + 3),
-                operator: address(i * 2 + 1),
-                receiver: address(i * 2 + 2)
+                network: address(i * 2 + 3), operator: address(i * 2 + 1), receiver: address(i * 2 + 2)
             });
         }
 
@@ -263,9 +259,7 @@ contract BurnerRouterFactoryTest is Test {
 
         for (uint160 i; i < N2; ++i) {
             operatorNetworkReceivers[i] = IBurnerRouter.OperatorNetworkReceiver({
-                network: address(i * 2 + 3),
-                operator: address(i * 2 + 1),
-                receiver: address(i * 2 + 2)
+                network: address(i * 2 + 3), operator: address(i * 2 + 1), receiver: address(i * 2 + 2)
             });
         }
 
@@ -299,9 +293,7 @@ contract BurnerRouterFactoryTest is Test {
 
         for (uint160 i; i < N2; ++i) {
             operatorNetworkReceivers[i] = IBurnerRouter.OperatorNetworkReceiver({
-                network: address(i * 2 + 3),
-                operator: address(i * 2 + 1),
-                receiver: address(0)
+                network: address(i * 2 + 3), operator: address(i * 2 + 1), receiver: address(0)
             });
         }
 
@@ -334,9 +326,7 @@ contract BurnerRouterFactoryTest is Test {
 
         for (uint160 i; i < N2; ++i) {
             operatorNetworkReceivers[i] = IBurnerRouter.OperatorNetworkReceiver({
-                network: address(i * 2 + 3),
-                operator: address(i * 2 + 1),
-                receiver: address(i * 2 + 2)
+                network: address(i * 2 + 3), operator: address(i * 2 + 1), receiver: address(i * 2 + 2)
             });
         }
 
@@ -370,9 +360,7 @@ contract BurnerRouterFactoryTest is Test {
 
         for (uint160 i; i < N2; ++i) {
             operatorNetworkReceivers[i] = IBurnerRouter.OperatorNetworkReceiver({
-                network: address(1),
-                operator: address(1),
-                receiver: address(i * 2 + 2)
+                network: address(1), operator: address(1), receiver: address(i * 2 + 2)
             });
         }
 
@@ -389,9 +377,7 @@ contract BurnerRouterFactoryTest is Test {
         address burnerRouterAddress = burnerRouterFactory.create(initParams);
     }
 
-    function _getVaultWithDelegatorWithSlasher(
-        address burner
-    ) internal returns (Vault, FullRestakeDelegator, Slasher) {
+    function _getVaultWithDelegatorWithSlasher(address burner) internal returns (Vault, FullRestakeDelegator, Slasher) {
         address[] memory networkLimitSetRoleHolders = new address[](1);
         networkLimitSetRoleHolders[0] = alice;
         address[] memory operatorNetworkSharesSetRoleHolders = new address[](1);
@@ -419,9 +405,7 @@ contract BurnerRouterFactoryTest is Test {
                 delegatorParams: abi.encode(
                     INetworkRestakeDelegator.InitParams({
                         baseParams: IBaseDelegator.BaseParams({
-                            defaultAdminRoleHolder: alice,
-                            hook: address(0),
-                            hookSetRoleHolder: alice
+                            defaultAdminRoleHolder: alice, hook: address(0), hookSetRoleHolder: alice
                         }),
                         networkLimitSetRoleHolders: networkLimitSetRoleHolders,
                         operatorNetworkSharesSetRoleHolders: operatorNetworkSharesSetRoleHolders
@@ -429,7 +413,9 @@ contract BurnerRouterFactoryTest is Test {
                 ),
                 withSlasher: true,
                 slasherIndex: 0,
-                slasherParams: abi.encode(ISlasher.InitParams({baseParams: IBaseSlasher.BaseParams({isBurnerHook: true})}))
+                slasherParams: abi.encode(
+                    ISlasher.InitParams({baseParams: IBaseSlasher.BaseParams({isBurnerHook: true})})
+                )
             })
         );
 

@@ -54,9 +54,7 @@ contract wstETH_Burner is UintRequests, IwstETH_Burner {
     /**
      * @inheritdoc IwstETH_Burner
      */
-    function triggerWithdrawal(
-        uint256 maxRequests
-    ) external returns (uint256[] memory requestIds_) {
+    function triggerWithdrawal(uint256 maxRequests) external returns (uint256[] memory requestIds_) {
         IWstETH(COLLATERAL).unwrap(IERC20(COLLATERAL).balanceOf(address(this)));
         uint256 stETHAmount = IERC20(STETH).balanceOf(address(this));
 
@@ -90,9 +88,7 @@ contract wstETH_Burner is UintRequests, IwstETH_Burner {
     /**
      * @inheritdoc IwstETH_Burner
      */
-    function triggerBurn(
-        uint256 requestId
-    ) external {
+    function triggerBurn(uint256 requestId) external {
         _removeRequestId(requestId);
 
         IWithdrawalQueue(LIDO_WITHDRAWAL_QUEUE).claimWithdrawal(requestId);

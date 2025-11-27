@@ -38,7 +38,5 @@ interface ImETH_Burner is IUintRequests {
      * @notice Trigger a claim and a burn of ETH.
      * @param requestId request ID of the withdrawal to process
      */
-    function triggerBurn(
-        uint256 requestId
-    ) external;
+    function triggerBurn(uint256 requestId) external;
 }

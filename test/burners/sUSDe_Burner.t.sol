@@ -158,9 +158,7 @@ contract sUSDe_BurnerTest is Test {
         burner.triggerClaim(address(0));
     }
 
-    function test_TriggerClaimRevertNoCooldown(
-        uint256 depositAmount1
-    ) public {
+    function test_TriggerClaimRevertNoCooldown(uint256 depositAmount1) public {
         vm.startPrank(DEFAULT_ADMIN);
         ISUSDe(COLLATERAL).setCooldownDuration(0);
         vm.stopPrank();
@@ -176,9 +174,7 @@ contract sUSDe_BurnerTest is Test {
         burner.triggerWithdrawal();
     }
 
-    function test_TriggerInstantClaim(
-        uint256 depositAmount1
-    ) public {
+    function test_TriggerInstantClaim(uint256 depositAmount1) public {
         vm.startPrank(DEFAULT_ADMIN);
         ISUSDe(COLLATERAL).setCooldownDuration(0);
         vm.stopPrank();
@@ -238,9 +234,11 @@ contract sUSDe_BurnerTest is Test {
                 && usdeAmount
                     <= Math.min(
                         IEthenaMinting(IUSDe(USDE).minter()).tokenConfig(USDT).maxRedeemPerBlock
-                            - IEthenaMinting(IUSDe(USDE).minter()).totalPerBlockPerAsset(block.number, USDT).redeemedPerBlock,
+                            - IEthenaMinting(IUSDe(USDE).minter())
+                            .totalPerBlockPerAsset(block.number, USDT)
+                            .redeemedPerBlock,
                         IEthenaMinting(IUSDe(USDE).minter()).globalConfig().globalMaxRedeemPerBlock
-                            - IEthenaMinting(IUSDe(USDE).minter()).totalPerBlock(block.number).redeemedPerBlock
+                        - IEthenaMinting(IUSDe(USDE).minter()).totalPerBlock(block.number).redeemedPerBlock
                     )
         );
 
@@ -263,8 +261,7 @@ contract sUSDe_BurnerTest is Test {
         });
 
         IEthenaMinting.Signature memory signature = IEthenaMinting.Signature({
-            signature_type: IEthenaMinting.SignatureType.EIP1271,
-            signature_bytes: abi.encode(order)
+            signature_type: IEthenaMinting.SignatureType.EIP1271, signature_bytes: abi.encode(order)
         });
 
         vm.startPrank(DEFAULT_ADMIN);
@@ -348,9 +345,11 @@ contract sUSDe_BurnerTest is Test {
                 && usdeAmount
                     <= Math.min(
                         IEthenaMinting(IUSDe(USDE).minter()).tokenConfig(USDT).maxRedeemPerBlock
-                            - IEthenaMinting(IUSDe(USDE).minter()).totalPerBlockPerAsset(block.number, USDT).redeemedPerBlock,
+                            - IEthenaMinting(IUSDe(USDE).minter())
+                            .totalPerBlockPerAsset(block.number, USDT)
+                            .redeemedPerBlock,
                         IEthenaMinting(IUSDe(USDE).minter()).globalConfig().globalMaxRedeemPerBlock
-                            - IEthenaMinting(IUSDe(USDE).minter()).totalPerBlock(block.number).redeemedPerBlock
+                        - IEthenaMinting(IUSDe(USDE).minter()).totalPerBlock(block.number).redeemedPerBlock
                     )
         );
 
@@ -373,8 +372,7 @@ contract sUSDe_BurnerTest is Test {
         });
 
         IEthenaMinting.Signature memory signature = IEthenaMinting.Signature({
-            signature_type: IEthenaMinting.SignatureType.EIP1271,
-            signature_bytes: abi.encode(order)
+            signature_type: IEthenaMinting.SignatureType.EIP1271, signature_bytes: abi.encode(order)
         });
 
         vm.startPrank(DEFAULT_ADMIN);

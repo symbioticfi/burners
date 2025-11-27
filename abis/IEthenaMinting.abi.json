@@ -1,0 +1,291 @@
+[
+  {
+    "type": "function",
+    "name": "addWhitelistedBenefactor",
+    "inputs": [
+      {
+        "name": "benefactor",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "globalConfig",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct IEthenaMinting.GlobalConfig",
+        "components": [
+          {
+            "name": "globalMaxMintPerBlock",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "globalMaxRedeemPerBlock",
+            "type": "uint128",
+            "internalType": "uint128"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "hashOrder",
+    "inputs": [
+      {
+        "name": "order",
+        "type": "tuple",
+        "internalType": "struct IEthenaMinting.Order",
+        "components": [
+          {
+            "name": "order_id",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "order_type",
+            "type": "uint8",
+            "internalType": "enum IEthenaMinting.OrderType"
+          },
+          {
+            "name": "expiry",
+            "type": "uint120",
+            "internalType": "uint120"
+          },
+          {
+            "name": "nonce",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "benefactor",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "beneficiary",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "collateral_asset",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "collateral_amount",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "usde_amount",
+            "type": "uint128",
+            "internalType": "uint128"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "redeem",
+    "inputs": [
+      {
+        "name": "order",
+        "type": "tuple",
+        "internalType": "struct IEthenaMinting.Order",
+        "components": [
+          {
+            "name": "order_id",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "order_type",
+            "type": "uint8",
+            "internalType": "enum IEthenaMinting.OrderType"
+          },
+          {
+            "name": "expiry",
+            "type": "uint120",
+            "internalType": "uint120"
+          },
+          {
+            "name": "nonce",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "benefactor",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "beneficiary",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "collateral_asset",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "collateral_amount",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "usde_amount",
+            "type": "uint128",
+            "internalType": "uint128"
+          }
+        ]
+      },
+      {
+        "name": "signature",
+        "type": "tuple",
+        "internalType": "struct IEthenaMinting.Signature",
+        "components": [
+          {
+            "name": "signature_type",
+            "type": "uint8",
+            "internalType": "enum IEthenaMinting.SignatureType"
+          },
+          {
+            "name": "signature_bytes",
+            "type": "bytes",
+            "internalType": "bytes"
+          }
+        ]
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "tokenConfig",
+    "inputs": [
+      {
+        "name": "asset",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct IEthenaMinting.TokenConfig",
+        "components": [
+          {
+            "name": "tokenType",
+            "type": "uint8",
+            "internalType": "enum IEthenaMinting.TokenType"
+          },
+          {
+            "name": "isActive",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "maxMintPerBlock",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "maxRedeemPerBlock",
+            "type": "uint128",
+            "internalType": "uint128"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "totalPerBlock",
+    "inputs": [
+      {
+        "name": "blockNumber",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct IEthenaMinting.BlockTotals",
+        "components": [
+          {
+            "name": "mintedPerBlock",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "redeemedPerBlock",
+            "type": "uint128",
+            "internalType": "uint128"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "totalPerBlockPerAsset",
+    "inputs": [
+      {
+        "name": "blockNumber",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "asset",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct IEthenaMinting.BlockTotals",
+        "components": [
+          {
+            "name": "mintedPerBlock",
+            "type": "uint128",
+            "internalType": "uint128"
+          },
+          {
+            "name": "redeemedPerBlock",
+            "type": "uint128",
+            "internalType": "uint128"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  }
+]

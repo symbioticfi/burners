@@ -23,10 +23,9 @@ interface IWithdrawalQueue {
     /// @param _owner address that will be able to manage the created requests.
     ///  If `address(0)` is passed, `msg.sender` will be used as owner.
     /// @return requestIds an array of the created withdrawal request ids
-    function requestWithdrawals(
-        uint256[] calldata _amounts,
-        address _owner
-    ) external returns (uint256[] memory requestIds);
+    function requestWithdrawals(uint256[] calldata _amounts, address _owner)
+        external
+        returns (uint256[] memory requestIds);
 
     /// @notice Claim a batch of withdrawal requests if they are finalized sending locked ether to the owner
     /// @param _requestIds array of request ids to claim
@@ -45,9 +44,7 @@ interface IWithdrawalQueue {
     ///  Reverts if requestId or hint are not valid
     ///  Reverts if request is not finalized or already claimed
     ///  Reverts if msg sender is not an owner of request
-    function claimWithdrawal(
-        uint256 _requestId
-    ) external;
+    function claimWithdrawal(uint256 _requestId) external;
 
     /// @notice Finalize requests from last finalized one up to `_lastRequestIdToBeFinalized`
     /// @dev ether to finalize all the requests should be calculated using `prefinalize()` and sent along
@@ -66,9 +63,8 @@ interface IWithdrawalQueue {
     /// @param _firstIndex left boundary of the search range. Should be greater than 0
     /// @param _lastIndex right boundary of the search range. Should be less than or equal to getLastCheckpointIndex()
     /// @return hintIds array of hints used to find required checkpoint for the request
-    function findCheckpointHints(
-        uint256[] calldata _requestIds,
-        uint256 _firstIndex,
-        uint256 _lastIndex
-    ) external view returns (uint256[] memory hintIds);
+    function findCheckpointHints(uint256[] calldata _requestIds, uint256 _firstIndex, uint256 _lastIndex)
+        external
+        view
+        returns (uint256[] memory hintIds);
 }

@@ -1,17 +1,6 @@
 # Compiler files
 cache/
 out/**/
-!out/sUSDe_Burner.sol/
-!out/sUSDe_Minburner.sol/
-!out/ETHx_Burner.sol/
-!out/mETH_Burner.sol/
-!out/rETH_Burner.sol/
-!out/sfrxETH_Burner.sol/
-!out/swETH_Burner.sol/
-!out/wstETH_Burner.sol/
-!out/BurnerRouterFactory.sol/
-!out/BurnerRouter.sol/
-
 
 # Ignores development broadcast logs
 !/broadcast
@@ -22,9 +11,14 @@ out/**/
 # Docs
 docs/
 
+# Node modules
+node_modules/
+
 # Dotenv file
 .env
 
 # Other files
 .gas-snapshot
 lcov.info
+
+

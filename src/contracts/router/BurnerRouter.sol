@@ -3,12 +3,12 @@ pragma solidity 0.8.25;
 
 import {IBurnerRouter} from "../../interfaces/router/IBurnerRouter.sol";
 
-import {IBurner} from "@symbioticfi/core/src/interfaces/slasher/IBurner.sol";
-import {Subnetwork} from "@symbioticfi/core/src/contracts/libraries/Subnetwork.sol";
-
 import {OwnableUpgradeable} from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import {SafeERC20, IERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import {Time} from "@openzeppelin/contracts/utils/types/Time.sol";
+
+import {IBurner} from "@symbioticfi/core/src/interfaces/slasher/IBurner.sol";
+import {Subnetwork} from "@symbioticfi/core/src/contracts/libraries/Subnetwork.sol";
 
 contract BurnerRouter is OwnableUpgradeable, IBurnerRouter {
     using Subnetwork for bytes32;
@@ -82,7 +82,9 @@ contract BurnerRouter is OwnableUpgradeable, IBurnerRouter {
         address operator,
         uint256, /* amount */
         uint48 /* captureTimestamp */
-    ) external {
+    )
+        external
+    {
         uint256 currentBalance = IERC20(collateral).balanceOf(address(this));
         balanceOf[_getReceiver(subnetwork.network(), operator)] += currentBalance - lastBalance;
         lastBalance = currentBalance;
@@ -91,9 +93,7 @@ contract BurnerRouter is OwnableUpgradeable, IBurnerRouter {
     /**
      * @inheritdoc IBurnerRouter
      */
-    function triggerTransfer(
-        address receiver
-    ) external returns (uint256 amount) {
+    function triggerTransfer(address receiver) external returns (uint256 amount) {
         amount = balanceOf[receiver];
 
         if (amount == 0) {
@@ -111,9 +111,7 @@ contract BurnerRouter is OwnableUpgradeable, IBurnerRouter {
     /**
      * @inheritdoc IBurnerRouter
      */
-    function setGlobalReceiver(
-        address receiver
-    ) external onlyOwner {
+    function setGlobalReceiver(address receiver) external onlyOwner {
         _tryAcceptDelay();
         _setReceiver(receiver, globalReceiver, pendingGlobalReceiver);
 
@@ -142,9 +140,7 @@ contract BurnerRouter is OwnableUpgradeable, IBurnerRouter {
     /**
      * @inheritdoc IBurnerRouter
      */
-    function acceptNetworkReceiver(
-        address network
-    ) external {
+    function acceptNetworkReceiver(address network) external {
         _acceptReceiver(networkReceiver[network], pendingNetworkReceiver[network]);
 
         emit AcceptNetworkReceiver(network);
@@ -174,9 +170,7 @@ contract BurnerRouter is OwnableUpgradeable, IBurnerRouter {
     /**
      * @inheritdoc IBurnerRouter
      */
-    function setDelay(
-        uint48 newDelay
-    ) external onlyOwner {
+    function setDelay(uint48 newDelay) external onlyOwner {
         _tryAcceptDelay();
 
         if (pendingDelay.timestamp != 0) {
@@ -205,9 +199,7 @@ contract BurnerRouter is OwnableUpgradeable, IBurnerRouter {
         _tryAcceptDelay();
     }
 
-    function initialize(
-        InitParams calldata params
-    ) external initializer {
+    function initialize(InitParams calldata params) external initializer {
         if (params.collateral == address(0)) {
             revert InvalidCollateral();
         }
@@ -269,11 +261,9 @@ contract BurnerRouter is OwnableUpgradeable, IBurnerRouter {
         return globalReceiver.value;
     }
 
-    function _setReceiver(
-        address newReceiver,
-        Address storage currentReceiver,
-        PendingAddress storage pendingReceiver
-    ) internal {
+    function _setReceiver(address newReceiver, Address storage currentReceiver, PendingAddress storage pendingReceiver)
+        internal
+    {
         if (pendingReceiver.timestamp != 0 && pendingReceiver.timestamp <= Time.timestamp()) {
             currentReceiver.value = pendingReceiver.value;
             pendingReceiver.value = address(0);

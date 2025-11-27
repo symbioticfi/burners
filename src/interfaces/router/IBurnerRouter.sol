@@ -189,9 +189,7 @@ interface IBurnerRouter is IBurner {
      * @param network address of the slashing network
      * @return address of the receiver
      */
-    function networkReceiver(
-        address network
-    ) external view returns (address);
+    function networkReceiver(address network) external view returns (address);
 
     /**
      * @notice Get a router pending receiver for a slashing network.
@@ -199,9 +197,7 @@ interface IBurnerRouter is IBurner {
      * @return value pending receiver
      * @return timestamp timestamp since which the pending receiver can be used
      */
-    function pendingNetworkReceiver(
-        address network
-    ) external view returns (address, uint48);
+    function pendingNetworkReceiver(address network) external view returns (address, uint48);
 
     /**
      * @notice Get a router receiver for a slashed operator by a slashing network.
@@ -218,36 +214,27 @@ interface IBurnerRouter is IBurner {
      * @return value pending receiver
      * @return timestamp timestamp since which the pending receiver can be used
      */
-    function pendingOperatorNetworkReceiver(
-        address network,
-        address operator
-    ) external view returns (address, uint48);
+    function pendingOperatorNetworkReceiver(address network, address operator) external view returns (address, uint48);
 
     /**
      * @notice Get a receiver balance of unclaimed collateral.
      * @param receiver address of the receiver
      * @return amount of the unclaimed collateral tokens
      */
-    function balanceOf(
-        address receiver
-    ) external view returns (uint256);
+    function balanceOf(address receiver) external view returns (uint256);
 
     /**
      * @notice Trigger a transfer of the unclaimed collateral to the receiver.
      * @param receiver address of the receiver
      * @return amount of the transfer
      */
-    function triggerTransfer(
-        address receiver
-    ) external returns (uint256 amount);
+    function triggerTransfer(address receiver) external returns (uint256 amount);
 
     /**
      * @notice Set a new global receiver of the slashed funds.
      * @param receiver address of the new receiver
      */
-    function setGlobalReceiver(
-        address receiver
-    ) external;
+    function setGlobalReceiver(address receiver) external;
 
     /**
      * @notice Accept a pending global receiver.
@@ -265,9 +252,7 @@ interface IBurnerRouter is IBurner {
      * @notice Accept a pending receiver for a slashing network.
      * @param network address of the slashing network
      */
-    function acceptNetworkReceiver(
-        address network
-    ) external;
+    function acceptNetworkReceiver(address network) external;
 
     /**
      * @notice Set a new receiver for a slashed operator by a slashing network.
@@ -288,9 +273,7 @@ interface IBurnerRouter is IBurner {
      * @notice Set a new delay for setting a new receiver or changing the delay itself.
      * @param newDelay new delay (in seconds)
      */
-    function setDelay(
-        uint48 newDelay
-    ) external;
+    function setDelay(uint48 newDelay) external;
 
     /**
      * @notice Accept a pending delay.

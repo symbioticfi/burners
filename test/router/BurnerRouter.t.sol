@@ -989,9 +989,7 @@ contract BurnerRouterTest is Test {
         IBurnerRouter.OperatorNetworkReceiver[] memory operatorNetworkReceivers =
             new IBurnerRouter.OperatorNetworkReceiver[](1);
         operatorNetworkReceivers[0] = IBurnerRouter.OperatorNetworkReceiver({
-            network: address(9876),
-            operator: address(98_765),
-            receiver: address(3_456_776_543)
+            network: address(9876), operator: address(98_765), receiver: address(3_456_776_543)
         });
 
         IBurnerRouter.InitParams memory initParams = IBurnerRouter.InitParams({
@@ -1054,9 +1052,7 @@ contract BurnerRouterTest is Test {
         IBurnerRouter.OperatorNetworkReceiver[] memory operatorNetworkReceivers =
             new IBurnerRouter.OperatorNetworkReceiver[](1);
         operatorNetworkReceivers[0] = IBurnerRouter.OperatorNetworkReceiver({
-            network: address(9876),
-            operator: address(98_765),
-            receiver: address(3_456_776_543)
+            network: address(9876), operator: address(98_765), receiver: address(3_456_776_543)
         });
 
         IBurnerRouter.InitParams memory initParams = IBurnerRouter.InitParams({
@@ -1122,9 +1118,7 @@ contract BurnerRouterTest is Test {
         assertEq(burnerRouter.lastBalance(), amount1);
     }
 
-    function test_TriggerTransferRevertInsufficientBalance(
-        uint256 amount
-    ) external {
+    function test_TriggerTransferRevertInsufficientBalance(uint256 amount) external {
         amount = bound(amount, 1, 1000 * 1e18);
 
         uint256 blockTimestamp = block.timestamp * block.timestamp / block.timestamp * block.timestamp / block.timestamp;
@@ -1139,9 +1133,7 @@ contract BurnerRouterTest is Test {
         IBurnerRouter.OperatorNetworkReceiver[] memory operatorNetworkReceivers =
             new IBurnerRouter.OperatorNetworkReceiver[](1);
         operatorNetworkReceivers[0] = IBurnerRouter.OperatorNetworkReceiver({
-            network: address(9876),
-            operator: address(98_765),
-            receiver: address(3_456_776_543)
+            network: address(9876), operator: address(98_765), receiver: address(3_456_776_543)
         });
 
         IBurnerRouter.InitParams memory initParams = IBurnerRouter.InitParams({
@@ -1164,9 +1156,7 @@ contract BurnerRouterTest is Test {
         burnerRouter.triggerTransfer(address(3_456_776_543));
     }
 
-    function _getVaultWithDelegatorWithSlasher(
-        address burner
-    ) internal returns (Vault, FullRestakeDelegator, Slasher) {
+    function _getVaultWithDelegatorWithSlasher(address burner) internal returns (Vault, FullRestakeDelegator, Slasher) {
         address[] memory networkLimitSetRoleHolders = new address[](1);
         networkLimitSetRoleHolders[0] = alice;
         address[] memory operatorNetworkSharesSetRoleHolders = new address[](1);
@@ -1194,9 +1184,7 @@ contract BurnerRouterTest is Test {
                 delegatorParams: abi.encode(
                     INetworkRestakeDelegator.InitParams({
                         baseParams: IBaseDelegator.BaseParams({
-                            defaultAdminRoleHolder: alice,
-                            hook: address(0),
-                            hookSetRoleHolder: alice
+                            defaultAdminRoleHolder: alice, hook: address(0), hookSetRoleHolder: alice
                         }),
                         networkLimitSetRoleHolders: networkLimitSetRoleHolders,
                         operatorNetworkSharesSetRoleHolders: operatorNetworkSharesSetRoleHolders
@@ -1204,7 +1192,9 @@ contract BurnerRouterTest is Test {
                 ),
                 withSlasher: true,
                 slasherIndex: 0,
-                slasherParams: abi.encode(ISlasher.InitParams({baseParams: IBaseSlasher.BaseParams({isBurnerHook: true})}))
+                slasherParams: abi.encode(
+                    ISlasher.InitParams({baseParams: IBaseSlasher.BaseParams({isBurnerHook: true})})
+                )
             })
         );
 
